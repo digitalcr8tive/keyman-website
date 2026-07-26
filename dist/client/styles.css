@@ -2404,9 +2404,8 @@ p {
   }
 
   .hero::before {
-    background-position: center bottom;
-    background-size: auto 135%;
-    mask-image: linear-gradient(to bottom, black 0%, black 86%, transparent 100%);
+    background-position: center -96px;
+    background-size: cover;
   }
 
   .hero-kicker {
