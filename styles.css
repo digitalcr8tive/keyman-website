@@ -2334,3 +2334,321 @@ p {
     border-left: 0;
   }
 }
+
+/* Phone layout correction
+   These rules intentionally come last so the reference-alignment desktop
+   overrides cannot restore multi-column layouts on narrow screens. */
+@media (max-width: 720px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  html {
+    scroll-padding-top: calc(var(--header-height) + 12px);
+  }
+
+  .site-header {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .header-inner {
+    width: calc(100% - 24px);
+    min-width: 0;
+    gap: 10px;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-name {
+    font-size: clamp(1.35rem, 7vw, 1.65rem);
+    letter-spacing: 0.04em;
+  }
+
+  .brand-role {
+    display: none;
+  }
+
+  .header-cta {
+    min-width: 0;
+    min-height: 42px;
+    margin-left: auto;
+    padding-inline: clamp(10px, 3.5vw, 16px);
+    font-size: clamp(0.54rem, 2.5vw, 0.62rem);
+    letter-spacing: 0.08em;
+  }
+
+  .menu-toggle {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+  }
+
+  .mobile-nav {
+    padding-right: max(24px, env(safe-area-inset-right));
+    padding-left: max(24px, env(safe-area-inset-left));
+  }
+
+  .hero {
+    min-height: auto;
+    padding: clamp(52px, 14vw, 68px) 20px clamp(48px, 13vw, 64px);
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero-kicker {
+    margin-bottom: 18px;
+    font-size: 0.62rem;
+    line-height: 1.5;
+  }
+
+  .hero h1 {
+    max-width: 11ch;
+    margin-inline: auto;
+    margin-bottom: 24px;
+    font-size: clamp(2.75rem, 12.2vw, 3.45rem);
+    letter-spacing: -0.025em;
+    line-height: 0.98;
+    overflow-wrap: normal;
+  }
+
+  .hero h1 br {
+    display: block;
+  }
+
+  .hero-summary {
+    max-width: 35ch;
+    margin-bottom: 28px;
+    font-size: 0.94rem;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    width: min(100%, 340px);
+    margin-inline: auto;
+    gap: 12px;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-item {
+    min-height: 0;
+    padding: 38px 24px 40px;
+  }
+
+  .service-item + .service-item,
+  .service-item:nth-child(3),
+  .service-item:nth-child(4),
+  .service-item:nth-child(5) {
+    border-top: 1px solid var(--rule);
+    border-left: 0;
+  }
+
+  .service-item h3 {
+    min-height: 0;
+    margin-bottom: 10px;
+    font-size: 0.7rem;
+  }
+
+  .service-item p {
+    max-width: 34ch;
+    margin-inline: auto;
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
+
+  .conversion-section {
+    width: 100%;
+    max-width: 100%;
+    border-right: 0;
+    border-left: 0;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .conversion-section > article {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    padding: 44px 20px;
+    grid-column: auto;
+  }
+
+  .conversion-section > article + article,
+  .conversion-section .booking-panel {
+    border-top: 1px solid var(--rule);
+    border-left: 0 !important;
+  }
+
+  .analysis-intro {
+    min-height: 360px;
+    justify-content: center;
+  }
+
+  .analysis-intro h2 {
+    font-size: clamp(2.6rem, 13vw, 3.35rem);
+  }
+
+  .analysis-intro > p:not(.section-label) {
+    max-width: 34ch;
+    font-size: 0.88rem;
+    line-height: 1.75;
+  }
+
+  .analysis-intro .commitment {
+    margin-top: 24px;
+  }
+
+  .inquiry-panel .section-label {
+    margin-bottom: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .field input,
+  .field textarea {
+    min-height: 48px;
+    padding: 11px 12px;
+    font-size: 1rem;
+  }
+
+  .field textarea {
+    min-height: 136px;
+  }
+
+  .catalog-size legend,
+  .field label {
+    font-size: 0.8rem;
+  }
+
+  .radio-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .radio-grid span {
+    min-height: 48px;
+    font-size: 0.78rem;
+  }
+
+  .consent-field {
+    font-size: 0.78rem;
+  }
+
+  .consent-field input {
+    width: 20px;
+    height: 20px;
+  }
+
+  .booking-panel .calendar-shell,
+  .timezone-field,
+  .booking-actions,
+  .calendar-status {
+    width: 100%;
+    max-width: 390px;
+  }
+
+  .calendar-shell {
+    min-height: 0;
+  }
+
+  .calendar-days button,
+  .calendar-days span {
+    width: clamp(36px, 10vw, 42px);
+    height: clamp(36px, 10vw, 42px);
+  }
+
+  .booking-actions {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .booking-actions label,
+  .booking-actions .button {
+    min-height: 48px;
+  }
+
+  .credential-list {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .credential-list article {
+    min-width: 0;
+    padding: 28px 0;
+    grid-template-columns: 50px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .credential-list h3 {
+    font-size: 0.7rem;
+  }
+
+  .credential-list p {
+    font-size: 0.79rem;
+  }
+
+  .closing-cta {
+    align-items: stretch;
+  }
+
+  .closing-cta h2 {
+    max-width: 12ch;
+    font-size: clamp(2.5rem, 12vw, 3.25rem);
+    line-height: 0.98;
+  }
+
+  .closing-cta .button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .contact-strip,
+  .site-footer {
+    padding-right: max(24px, env(safe-area-inset-right));
+    padding-left: max(24px, env(safe-area-inset-left));
+  }
+}
+
+@media (max-width: 380px) {
+  .header-inner {
+    width: calc(100% - 16px);
+    gap: 6px;
+  }
+
+  .brand-name {
+    font-size: 1.22rem;
+  }
+
+  .header-cta {
+    padding-inline: 9px;
+    font-size: 0.52rem;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    flex-basis: 40px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.55rem, 12.5vw, 3rem);
+  }
+
+  .conversion-section > article {
+    padding-inline: 16px;
+  }
+}
