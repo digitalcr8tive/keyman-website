@@ -1837,7 +1837,7 @@ p {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/assets/platinum-studio-background.png") center 62% / cover no-repeat;
+  background: url("assets/platinum-studio-background.png") center 62% / cover no-repeat;
   opacity: 0.16;
   filter: saturate(0.55) contrast(0.8);
   mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 83%, transparent 100%);
