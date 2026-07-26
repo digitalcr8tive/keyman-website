@@ -12,7 +12,7 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <script src="/app.js" type="module"></script>
 </head>
@@ -65,7 +65,7 @@
         <p class="hero-summary">Helping producers, songwriters, publishers, and independent music catalogs maximize the value of their work through metadata analysis, publishing administration, rights research, royalty recovery, DMCA enforcement, and strategic royalty advance preparation.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#book">Schedule a call</a>
-          <button class="button button-outline" type="button" data-open-catalog>Request a free catalog check</button>
+          <button class="button button-outline" type="button" data-open-catalog>Free catalog check</button>
         </div>
       </div>
     </section>
@@ -130,7 +130,6 @@
         <span class="heading-rule" aria-hidden="true"></span>
         <p>Send five song titles, and I’ll review your catalog to identify what registrations already exist, what may be missing, and potential royalty collection opportunities.</p>
         <p class="commitment">No charge. No commitment.</p>
-        <button class="button button-outline" type="button" data-open-catalog>Send five song titles</button>
         <svg class="analysis-icon" viewBox="0 0 56 68" aria-hidden="true">
           <rect x="7" y="3" width="42" height="62" rx="2"></rect>
           <path d="M16 14h24M16 24l3 3 5-6M28 24h12M16 36l3 3 5-6M28 36h12M16 48l3 3 5-6M28 48h12"></path>
@@ -192,38 +191,60 @@
 
       <article class="booking-panel" id="book">
         <p class="section-label">Book a time to talk</p>
-        <h2>Schedule a consultation</h2>
-        <p>Select a time that works for you through the secure Google appointment scheduler.</p>
-        <div class="calendar-shell" data-calendar-shell aria-live="polite">
-          <div class="calendar-loading" data-calendar-loading>
-            <span class="calendar-mark" aria-hidden="true">
-              <span>KEY</span>
-              <strong>30</strong>
-            </span>
-            <p>Loading available appointments…</p>
+        <p class="booking-instruction">Select a time that works for you.</p>
+        <div class="calendar-shell" data-calendar-shell>
+          <div class="calendar-heading">
+            <span aria-hidden="true">‹</span>
+            <strong>July 2026</strong>
+            <span aria-hidden="true">›</span>
           </div>
-          <iframe class="calendar-frame" data-calendar-frame title="Book a Keyman consultation through Google Calendar" loading="lazy" hidden></iframe>
-          <div class="calendar-unavailable" data-calendar-unavailable hidden>
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <rect x="7" y="10" width="34" height="31" rx="2"></rect>
-              <path d="M15 5v10M33 5v10M7 20h34M15 28h6M27 28h6M15 35h6"></path>
-            </svg>
-            <p>The Google appointment schedule is ready to connect.</p>
-            <span>Add the schedule URL to the deployment settings to publish live availability.</span>
+          <div class="calendar-weekdays" aria-hidden="true">
+            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+          </div>
+          <div class="calendar-days" aria-label="Choose an appointment date">
+            <span class="outside-month">28</span><span class="outside-month">29</span><span class="outside-month">30</span>
+            <button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button>
+            <button type="button">5</button><button type="button">6</button><button type="button">7</button><button type="button">8</button><button type="button">9</button><button type="button">10</button><button type="button">11</button>
+            <button type="button">12</button><button type="button">13</button><button type="button">14</button><button type="button">15</button><button type="button">16</button><button type="button">17</button><button type="button">18</button>
+            <button type="button">19</button><button type="button">20</button><button type="button">21</button><button type="button">22</button><button type="button">23</button><button type="button">24</button><button type="button">25</button>
+            <button type="button">26</button><button type="button">27</button><button class="is-selected" type="button" aria-pressed="true">28</button><button type="button">29</button><button type="button">30</button><button type="button">31</button>
           </div>
         </div>
-        <a class="button button-primary calendar-external" data-calendar-link href="#" target="_blank" rel="noopener" hidden>Open appointment scheduler</a>
+        <label class="timezone-field">
+          <span>Time zone</span>
+          <select aria-label="Appointment time zone">
+            <option>Central Time (US &amp; Canada)</option>
+            <option>Eastern Time (US &amp; Canada)</option>
+            <option>Pacific Time (US &amp; Canada)</option>
+          </select>
+        </label>
+        <div class="booking-actions">
+          <label>
+            <span class="sr-only">Preferred time</span>
+            <select aria-label="Preferred appointment time">
+              <option>10:00 AM</option>
+              <option>11:00 AM</option>
+              <option>1:00 PM</option>
+              <option>2:00 PM</option>
+            </select>
+          </label>
+          <button class="button button-primary" type="button" data-calendar-confirm>Confirm</button>
+        </div>
+        <p class="calendar-status" role="status" aria-live="polite" data-calendar-status></p>
       </article>
     </section>
 
     <section class="credentials" id="credentials" aria-labelledby="credentials-title">
       <div class="section-heading centered">
         <p class="section-label">Credentials &amp; experience</p>
-        <h2 id="credentials-title">Industry knowledge grounded in the work</h2>
+        <h2 id="credentials-title" class="sr-only">Credentials and experience</h2>
       </div>
       <div class="credential-list">
         <article>
-          <span class="credential-number">15+</span>
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="18"></circle>
+            <path d="m24 12 3.5 7.2 8 1.1-5.8 5.7 1.4 8-7.1-3.8-7.1 3.8 1.4-8-5.8-5.7 8-1.1z"></path>
+          </svg>
           <div>
             <h3>Multi-platinum music producer</h3>
             <p>More than 15 years producing and overseeing high-performing records and catalogs.</p>
@@ -238,7 +259,7 @@
             <p>Formerly with Glass Window Entertainment and Lush Music Group in Atlanta.</p>
           </div>
         </article>
-        <article>
+        <article id="portfolio">
           <svg viewBox="0 0 48 48" aria-hidden="true">
             <circle cx="24" cy="24" r="17"></circle>
             <circle cx="24" cy="24" r="5"></circle>
@@ -249,57 +270,20 @@
             <p>Production credits on Rylo Rodriguez’s <cite>Been One</cite> and <cite>Skate</cite> project.</p>
           </div>
         </article>
-      </div>
-    </section>
-
-    <section class="portfolio" id="portfolio" aria-labelledby="portfolio-title">
-      <div class="portfolio-heading">
-        <p class="section-label">Selected production credits</p>
-        <h2 id="portfolio-title">Catalog expertise began in the studio<span class="red-stop">.</span></h2>
-        <p>The same attention required to make records translates into careful ownership research, registration review, and revenue strategy.</p>
-      </div>
-      <div class="credit-works">
-        <article class="credit-work">
-          <div class="credit-art" aria-hidden="true">
-            <span>RYLO<br>RODRIGUEZ</span>
-            <strong>BEEN<br>ONE</strong>
-          </div>
+        <article>
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="18"></circle>
+            <path d="M6 24h36M24 6c5 5 8 11 8 18s-3 13-8 18M24 6c-5 5-8 11-8 18s3 13 8 18M10 14h28M10 34h28"></path>
+          </svg>
           <div>
-            <p>Production credit</p>
-            <h3>Been One</h3>
-            <span>Certified record and credit documentation to be added when supplied.</span>
-          </div>
-        </article>
-        <article class="credit-work">
-          <div class="credit-art credit-art-inverse" aria-hidden="true">
-            <span>RYLO<br>RODRIGUEZ</span>
-            <strong>SKATE</strong>
-          </div>
-          <div>
-            <p>Production credit</p>
-            <h3>Skate</h3>
-            <span>Project artwork and credit documentation to be added when supplied.</span>
+            <h3>Global perspective</h3>
+            <p>Deep knowledge of PROs, territories, and international rights ecosystems.</p>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="about" id="about" aria-labelledby="about-title">
-      <div class="about-statement">
-        <p class="section-label">The Keyman approach</p>
-        <h2 id="about-title">Your catalog should be understandable, defensible, and ready to earn<span class="red-stop">.</span></h2>
-      </div>
-      <div class="about-copy">
-        <p>Music rights information is often split across registrations, administrators, territories, royalty sources, and legacy agreements. Keyman brings those records into focus, identifies material gaps, and gives catalog owners a practical path forward.</p>
-        <ol class="process-list">
-          <li><span>01</span><strong>Review</strong><small>Map the catalog, registrations, parties, and available documents.</small></li>
-          <li><span>02</span><strong>Research</strong><small>Find conflicts, missing links, ownership questions, and collection opportunities.</small></li>
-          <li><span>03</span><strong>Act</strong><small>Prioritize corrections, claims, administration, enforcement, or deal preparation.</small></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="closing-cta" aria-labelledby="closing-title">
+    <section class="closing-cta" id="about" aria-labelledby="closing-title">
       <div>
         <p>Your catalog is your asset.</p>
         <h2 id="closing-title">Let’s make sure it works for you<span class="red-stop">.</span></h2>
@@ -315,12 +299,13 @@
       </a>
       <span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-        Remote consultations
+        Consultations by appointment
       </span>
       <span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18M5.6 6.2c3.6 2.7 9.2 2.7 12.8 0M5.6 17.8c3.6-2.7 9.2-2.7 12.8 0M12 3c3 3.2 4.5 6.2 4.5 9s-1.5 5.8-4.5 9M12 3c-3 3.2-4.5 6.2-4.5 9s1.5 5.8 4.5 9"></path></svg>
-        Publishing and rights research
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-5.1 7-12a7 7 0 0 0-14 0c0 6.9 7 12 7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+        Music rights worldwide
       </span>
+      <span class="connect-label">Let’s connect.</span>
     </section>
   </main>
 

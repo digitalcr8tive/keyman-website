@@ -23,7 +23,7 @@ Light theme with a restrained color strategy. White carries the interface while 
 
 ## Typography
 
-- Display: Bodoni Moda, used for major headings and the Keyman wordmark.
+- Display: Cormorant Garamond, used for major headings and the Keyman wordmark to match the supplied reference more closely.
 - Interface and body: Manrope, used for navigation, body copy, forms, and labels.
 - Maximum body line length: 70 characters.
 - Headlines use balanced wrapping and remain below 6rem at the largest viewport.
@@ -34,8 +34,8 @@ Light theme with a restrained color strategy. White carries the interface while 
 - One-scroll navigation with a sticky header.
 - Hero is centered and surrounded by a subtle waveform field.
 - Services use six ruled columns on large screens, three and two columns at smaller widths.
-- The conversion section follows the reference’s three-part structure: free analysis, general inquiry, and calendar booking.
-- Credential and portfolio sections vary their composition to avoid repetitive cards.
+- The conversion section follows the reference’s compact three-part structure: free analysis, general inquiry, and calendar booking.
+- Credentials remain one compact four-column band, followed immediately by the closing consultation call to action.
 
 ## Components
 

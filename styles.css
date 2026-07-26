@@ -13,7 +13,7 @@
   --footer-rule: oklch(0.30 0.008 215);
   --success: oklch(0.45 0.13 150);
   --error: oklch(0.48 0.19 28);
-  --font-display: "Bodoni Moda", Georgia, serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Manrope", Arial, sans-serif;
   --max-width: 1440px;
   --header-height: 96px;
@@ -1834,5 +1834,574 @@ p {
 
   .legal-content {
     width: min(100% - 32px, 820px);
+  }
+}
+
+/* Reference-image alignment */
+:root {
+  --max-width: 1280px;
+  --header-height: 92px;
+}
+
+.header-inner {
+  width: min(100% - 76px, 1180px);
+  gap: 28px;
+}
+
+.brand-name {
+  font-size: 2.45rem;
+  letter-spacing: 0.06em;
+}
+
+.brand-role {
+  margin-top: 4px;
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+}
+
+.desktop-nav {
+  gap: clamp(22px, 2.5vw, 36px);
+}
+
+.desktop-nav a {
+  font-size: 0.64rem;
+}
+
+.header-cta {
+  min-height: 42px;
+  padding-inline: 22px;
+  font-size: 0.65rem;
+}
+
+.hero {
+  min-height: 510px;
+  padding: 60px 24px 50px;
+}
+
+.hero-content {
+  width: min(100%, 760px);
+}
+
+.hero-kicker {
+  margin-bottom: 12px;
+  font-size: 0.67rem;
+}
+
+.hero h1 {
+  margin-bottom: 18px;
+  font-size: clamp(3.2rem, 5.3vw, 4.55rem);
+  letter-spacing: -0.025em;
+  line-height: 0.99;
+}
+
+.heading-rule {
+  width: 62px;
+  margin-bottom: 17px;
+}
+
+.hero-summary {
+  width: min(100%, 620px);
+  margin-bottom: 27px;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.hero-actions {
+  gap: 20px;
+}
+
+.hero-actions .button {
+  min-width: 198px;
+  min-height: 46px;
+}
+
+.hero-wave {
+  width: min(39vw, 480px);
+  opacity: 0.18;
+}
+
+.hero-wave-left {
+  left: -11vw;
+}
+
+.hero-wave-right {
+  right: -11vw;
+}
+
+.service-item {
+  min-height: 255px;
+  padding: 34px 22px 28px;
+}
+
+.service-icon {
+  width: 46px;
+  height: 46px;
+  margin-bottom: 18px;
+}
+
+.service-item h3 {
+  margin-bottom: 10px;
+  font-size: 0.65rem;
+}
+
+.service-item p {
+  font-size: 0.74rem;
+  line-height: 1.7;
+}
+
+.conversion-section {
+  grid-template-columns: 0.96fr 1.05fr 1fr;
+}
+
+.conversion-section > article {
+  min-height: 470px;
+  padding: 30px 30px 26px;
+}
+
+.section-label {
+  margin-bottom: 13px;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+}
+
+.analysis-intro h2 {
+  margin-bottom: 14px;
+  font-size: 2.45rem;
+}
+
+.analysis-intro .heading-rule {
+  margin-bottom: 18px;
+}
+
+.analysis-intro > p:not(.section-label) {
+  max-width: 31ch;
+  font-size: 0.78rem;
+  line-height: 1.75;
+}
+
+.analysis-intro .commitment {
+  margin: 10px 0 24px;
+}
+
+.analysis-icon {
+  width: 46px;
+}
+
+.inquiry-form,
+.catalog-form {
+  gap: 10px;
+}
+
+.form-row {
+  gap: 10px;
+}
+
+.field {
+  gap: 3px;
+}
+
+.field label,
+.catalog-size legend,
+.song-fields legend {
+  font-size: 0.7rem;
+}
+
+.field input,
+.field textarea {
+  min-height: 38px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+}
+
+.field textarea {
+  min-height: 94px;
+}
+
+.catalog-size legend {
+  margin-bottom: 5px;
+}
+
+.radio-grid {
+  gap: 6px;
+}
+
+.radio-grid span {
+  min-height: 38px;
+  padding: 6px;
+  font-size: 0.66rem;
+}
+
+.consent-field {
+  gap: 7px;
+  font-size: 0.64rem;
+  line-height: 1.45;
+}
+
+.consent-field input {
+  width: 15px;
+  height: 15px;
+}
+
+.field-error {
+  font-size: 0.62rem;
+}
+
+.form-footer {
+  margin-top: 1px;
+  gap: 10px;
+}
+
+.form-footer p {
+  font-size: 0.61rem;
+}
+
+.form-footer .button {
+  min-height: 38px;
+  padding-inline: 14px;
+  font-size: 0.61rem;
+}
+
+.form-status {
+  font-size: 0.68rem;
+}
+
+.booking-panel {
+  text-align: center;
+}
+
+.booking-panel .section-label {
+  margin-bottom: 8px;
+}
+
+.booking-panel > .booking-instruction {
+  margin: 0 auto 9px;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.calendar-shell {
+  min-height: 0;
+  border: 0;
+  display: block;
+  background: transparent;
+  overflow: visible;
+}
+
+.calendar-heading {
+  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+}
+
+.calendar-heading strong {
+  font-size: 0.76rem;
+}
+
+.calendar-heading > span {
+  width: 36px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-size: 1.3rem;
+}
+
+.calendar-weekdays,
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+}
+
+.calendar-weekdays {
+  margin-bottom: 2px;
+}
+
+.calendar-weekdays span {
+  padding-block: 4px;
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.calendar-days button,
+.calendar-days span {
+  width: 30px;
+  height: 30px;
+  margin-inline: auto;
+  border: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: transparent;
+  font-size: 0.63rem;
+}
+
+.calendar-days button {
+  cursor: pointer;
+}
+
+.calendar-days button:hover {
+  background: var(--brand-soft);
+}
+
+.calendar-days button.is-selected {
+  color: var(--canvas);
+  background: var(--brand);
+  font-weight: 700;
+}
+
+.calendar-days .outside-month {
+  color: oklch(0.72 0.008 25);
+}
+
+.timezone-field {
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 1px;
+  color: var(--ink);
+  font-size: 0.61rem;
+  text-align: left;
+}
+
+.timezone-field > span {
+  font-weight: 600;
+}
+
+.timezone-field select,
+.booking-actions select {
+  width: 100%;
+  min-height: 34px;
+  padding: 4px 26px 4px 7px;
+  border: 0;
+  color: var(--muted);
+  background: var(--canvas);
+  font-size: 0.66rem;
+}
+
+.booking-actions {
+  margin-top: 6px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 9px;
+}
+
+.booking-actions label {
+  border: 1px solid var(--rule);
+}
+
+.booking-actions .button {
+  min-height: 38px;
+  padding-inline: 10px;
+  font-size: 0.64rem;
+}
+
+.calendar-status {
+  min-height: 1.25em;
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.61rem;
+  line-height: 1.35;
+}
+
+.credentials {
+  padding: 34px max(24px, calc((100% - var(--max-width)) / 2)) 38px;
+}
+
+.credentials .section-heading {
+  margin-bottom: 22px;
+}
+
+.credentials .section-label {
+  margin-bottom: 0;
+}
+
+.credential-list {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.credential-list article {
+  padding: 0 30px;
+  grid-template-columns: 50px 1fr;
+  gap: 15px;
+}
+
+.credential-list svg {
+  width: 48px;
+  height: 48px;
+}
+
+.credential-list h3 {
+  margin-bottom: 4px;
+  font-size: 0.64rem;
+}
+
+.credential-list p {
+  font-size: 0.69rem;
+  line-height: 1.6;
+}
+
+.closing-cta {
+  min-height: 112px;
+  padding: 20px clamp(44px, 10vw, 150px);
+}
+
+.closing-cta p {
+  font-size: 0.68rem;
+}
+
+.closing-cta h2 {
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  line-height: 0.95;
+}
+
+.closing-cta span {
+  font-size: 0.68rem;
+}
+
+.closing-cta .button {
+  min-width: 200px;
+  min-height: 44px;
+}
+
+.contact-strip {
+  min-height: 58px;
+  padding-block: 13px;
+  gap: 34px;
+}
+
+.contact-strip a,
+.contact-strip span {
+  font-size: 0.7rem;
+}
+
+.contact-strip .connect-label {
+  padding-left: 28px;
+  border-left: 1px solid var(--rule);
+}
+
+.site-footer {
+  padding-block: 26px;
+}
+
+.footer-top {
+  padding-bottom: 18px;
+}
+
+.brand-footer .brand-name {
+  font-size: 1.65rem;
+}
+
+.footer-bottom {
+  padding-top: 16px;
+}
+
+@media (max-width: 1180px) {
+  .header-inner {
+    width: min(100% - 32px, 1120px);
+  }
+
+  .conversion-section {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .booking-panel {
+    grid-column: 1 / -1;
+  }
+
+  .booking-panel .calendar-shell {
+    width: min(100%, 390px);
+    margin-inline: auto;
+  }
+
+  .timezone-field,
+  .booking-actions,
+  .calendar-status {
+    width: min(100%, 390px);
+    margin-inline: auto;
+  }
+
+  .credential-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .credential-list article {
+    padding: 25px 34px;
+  }
+
+  .credential-list article:nth-child(3) {
+    border-top: 1px solid var(--rule);
+    border-left: 0;
+  }
+
+  .credential-list article:nth-child(4) {
+    border-top: 1px solid var(--rule);
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --header-height: 74px;
+  }
+
+  .header-inner {
+    width: calc(100% - 24px);
+  }
+
+  .brand-name {
+    font-size: 1.65rem;
+  }
+
+  .hero {
+    min-height: 560px;
+    padding-block: 66px 56px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 14vw, 4.1rem);
+  }
+
+  .conversion-section > article {
+    min-height: 0;
+    padding: 42px 22px;
+  }
+
+  .calendar-days button,
+  .calendar-days span {
+    width: 38px;
+    height: 38px;
+    font-size: 0.7rem;
+  }
+
+  .credential-list {
+    grid-template-columns: 1fr;
+  }
+
+  .credential-list article {
+    padding: 26px 0;
+  }
+
+  .credential-list article:nth-child(2),
+  .credential-list article:nth-child(4) {
+    border-left: 0;
+  }
+
+  .credential-list article + article {
+    border-top: 1px solid var(--rule);
+  }
+
+  .closing-cta {
+    min-height: 0;
+    padding: 46px 24px;
+  }
+
+  .contact-strip .connect-label {
+    padding-left: 0;
+    border-left: 0;
   }
 }

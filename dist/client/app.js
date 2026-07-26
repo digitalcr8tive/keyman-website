@@ -245,18 +245,12 @@ const isGoogleAppointmentUrl = (value) => {
   }
 };
 
-const setCalendarUnavailable = () => {
-  document.querySelector("[data-calendar-loading]")?.setAttribute("hidden", "");
-  document.querySelector("[data-calendar-frame]")?.setAttribute("hidden", "");
-  document.querySelector("[data-calendar-unavailable]")?.removeAttribute("hidden");
-  document.querySelector("[data-calendar-link]")?.setAttribute("hidden", "");
-};
+let googleAppointmentUrl = "";
 
 const connectCalendar = async () => {
-  const frame = document.querySelector("[data-calendar-frame]");
-  const link = document.querySelector("[data-calendar-link]");
-  const loading = document.querySelector("[data-calendar-loading]");
-  if (!frame || !link || !loading) return;
+  const confirmButton = document.querySelector("[data-calendar-confirm]");
+  const status = document.querySelector("[data-calendar-status]");
+  if (!confirmButton || !status) return;
 
   try {
     const response = await fetch("/api/config", {
@@ -267,33 +261,37 @@ const connectCalendar = async () => {
     if (!isGoogleAppointmentUrl(config.googleAppointmentUrl)) {
       throw new Error("Calendar URL is not configured.");
     }
-
-    const bookingUrl = new URL(config.googleAppointmentUrl);
-    bookingUrl.searchParams.set("gv", "true");
-
-    frame.addEventListener(
-      "load",
-      () => {
-        loading.setAttribute("hidden", "");
-        frame.removeAttribute("hidden");
-      },
-      { once: true }
-    );
-    frame.src = bookingUrl.toString();
-    link.href = config.googleAppointmentUrl;
-    link.removeAttribute("hidden");
-
-    window.setTimeout(() => {
-      if (loading.hasAttribute("hidden")) return;
-      loading.setAttribute("hidden", "");
-      frame.removeAttribute("hidden");
-    }, 4500);
+    googleAppointmentUrl = config.googleAppointmentUrl;
+    status.textContent = "Live availability is connected through Google Calendar.";
   } catch {
-    setCalendarUnavailable();
+    status.textContent = "";
   }
 };
 
 connectCalendar();
+
+document.querySelectorAll(".calendar-days button").forEach((dayButton) => {
+  dayButton.addEventListener("click", () => {
+    document.querySelectorAll(".calendar-days button").forEach((button) => {
+      button.classList.remove("is-selected");
+      button.removeAttribute("aria-pressed");
+    });
+    dayButton.classList.add("is-selected");
+    dayButton.setAttribute("aria-pressed", "true");
+  });
+});
+
+document.querySelector("[data-calendar-confirm]")?.addEventListener("click", () => {
+  const status = document.querySelector("[data-calendar-status]");
+  if (googleAppointmentUrl) {
+    window.open(googleAppointmentUrl, "_blank", "noopener");
+    if (status) status.textContent = "Opening the secure Google appointment schedule.";
+    return;
+  }
+  if (status) {
+    status.textContent = "The appointment schedule is ready to connect. Please email rightsdata@keymanpub.com in the meantime.";
+  }
+});
 
 document.querySelectorAll("[data-current-year]").forEach((year) => {
   year.textContent = new Date().getFullYear();
