@@ -2624,6 +2624,11 @@ p {
     padding-right: max(24px, env(safe-area-inset-right));
     padding-left: max(24px, env(safe-area-inset-left));
   }
+
+  .contact-strip {
+    padding-top: 30px;
+    padding-bottom: 44px;
+  }
 }
 
 @media (max-width: 380px) {
