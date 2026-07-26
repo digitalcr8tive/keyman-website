@@ -331,29 +331,6 @@ p {
   gap: 22px;
 }
 
-.hero-wave {
-  position: absolute;
-  top: 50%;
-  width: min(42vw, 560px);
-  height: 180px;
-  color: var(--brand);
-  background: url("/assets/waveform.svg") center / 100% 100% no-repeat;
-  opacity: 0.17;
-  transform: translateY(-50%);
-  pointer-events: none;
-  animation: wave-breathe 5s ease-in-out infinite alternate;
-}
-
-.hero-wave-left {
-  left: -13vw;
-}
-
-.hero-wave-right {
-  right: -13vw;
-  color: var(--ink);
-  transform: translateY(-50%) scaleX(-1);
-}
-
 .services {
   max-width: var(--max-width);
   margin-inline: auto;
@@ -1018,27 +995,6 @@ p {
   overflow: hidden;
 }
 
-.closing-cta::before,
-.closing-cta::after {
-  content: "";
-  position: absolute;
-  width: 340px;
-  height: 100px;
-  color: var(--ink);
-  background: url("/assets/waveform.svg") center / contain no-repeat;
-  opacity: 0.045;
-  pointer-events: none;
-}
-
-.closing-cta::before {
-  left: -120px;
-}
-
-.closing-cta::after {
-  right: -120px;
-  transform: scaleX(-1);
-}
-
 .closing-cta > * {
   position: relative;
 }
@@ -1257,17 +1213,6 @@ p {
   }
 }
 
-@keyframes wave-breathe {
-  from {
-    opacity: 0.1;
-    width: min(39vw, 520px);
-  }
-  to {
-    opacity: 0.2;
-    width: min(44vw, 590px);
-  }
-}
-
 @keyframes dialog-in {
   from {
     opacity: 0;
@@ -1426,10 +1371,6 @@ p {
     padding-top: 80px;
   }
 
-  .hero-wave {
-    width: 52vw;
-  }
-
   .credential-list {
     grid-template-columns: 1fr;
     max-width: 760px;
@@ -1524,19 +1465,6 @@ p {
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .hero-wave {
-    top: 43%;
-    width: 72vw;
-  }
-
-  .hero-wave-left {
-    left: -40vw;
-  }
-
-  .hero-wave-right {
-    right: -40vw;
   }
 
   .service-grid {
@@ -1915,25 +1843,6 @@ p {
   min-height: 46px;
 }
 
-.hero-wave {
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 240px;
-  opacity: 0.25;
-  animation: none;
-  background-size: 100% 100%;
-  transform: translateY(-50%);
-}
-
-.hero-wave-left {
-  left: 0;
-}
-
-.hero-wave-right {
-  display: none;
-}
-
 .hero::before {
   content: "";
   position: absolute;
@@ -1948,10 +1857,6 @@ p {
 
 .hero-content {
   z-index: 2;
-}
-
-.hero-wave {
-  z-index: 1;
 }
 
 .service-item {
