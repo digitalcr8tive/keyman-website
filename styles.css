@@ -431,17 +431,6 @@ p {
   margin-bottom: 34px;
 }
 
-.analysis-icon {
-  width: 52px;
-  margin-top: auto;
-  color: var(--brand);
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.7;
-}
-
 .inquiry-panel .section-label {
   text-align: center;
 }
@@ -1568,7 +1557,7 @@ p {
     align-items: stretch;
     flex-direction: column;
     gap: 30px;
-    text-align: center;
+    text-align: left;
   }
 
   .closing-cta .button {
@@ -1896,26 +1885,22 @@ p {
 }
 
 .analysis-intro h2 {
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   font-size: 2.45rem;
 }
 
 .analysis-intro .heading-rule {
-  margin-bottom: 18px;
+  margin-bottom: 28px;
 }
 
 .analysis-intro > p:not(.section-label) {
   max-width: 31ch;
   font-size: 0.78rem;
-  line-height: 1.75;
+  line-height: 1.9;
 }
 
 .analysis-intro .commitment {
-  margin: 10px 0 24px;
-}
-
-.analysis-icon {
-  width: 46px;
+  margin: 30px 0 0;
 }
 
 .inquiry-form,
@@ -2192,7 +2177,7 @@ p {
 
 .closing-cta {
   min-height: 112px;
-  padding: 20px clamp(44px, 10vw, 150px);
+  padding: 20px 48px;
 }
 
 .closing-cta p {
