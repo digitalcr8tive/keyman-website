@@ -625,7 +625,7 @@ p {
 .form-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 18px;
 }
 
@@ -1916,16 +1916,42 @@ p {
 }
 
 .hero-wave {
-  width: min(39vw, 480px);
-  opacity: 0.18;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 240px;
+  opacity: 0.25;
+  animation: none;
+  background-size: 100% 100%;
+  transform: translateY(-50%);
 }
 
 .hero-wave-left {
-  left: -11vw;
+  left: 0;
 }
 
 .hero-wave-right {
-  right: -11vw;
+  display: none;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/assets/platinum-studio-background.png") center 62% / cover no-repeat;
+  opacity: 0.16;
+  filter: saturate(0.55) contrast(0.8);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 16%, black 83%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  z-index: 2;
+}
+
+.hero-wave {
+  z-index: 1;
 }
 
 .service-item {
@@ -2061,6 +2087,7 @@ p {
 .form-footer {
   margin-top: 1px;
   gap: 10px;
+  justify-content: flex-end;
 }
 
 .form-footer p {
