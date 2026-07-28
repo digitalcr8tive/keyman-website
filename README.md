@@ -5,7 +5,7 @@ One-page consulting website for Keyman Music Metadata Consultant. The site inclu
 - Responsive one-scroll navigation
 - Music metadata and rights services
 - Secure catalog inquiry form
-- Separate five-song Rights Gap Analysis form
+- Rights Gap Analysis form for a Spotify or Apple Music song link
 - Google Calendar appointment schedule integration
 - Credentials, selected credits, process, contact, privacy, and terms
 - Server-side Resend delivery with validation, origin checks, honeypot protection, and best-effort rate limiting
@@ -38,13 +38,13 @@ ALLOWED_ORIGINS
 `RESEND_FROM_EMAIL` must use a sender domain verified in Resend. The recommended production value is:
 
 ```text
-Keyman Website <forms@keymanpub.com>
+Keyman Website <forms@keymanpublishing.com>
 ```
 
 `CONTACT_TO_EMAIL` should remain:
 
 ```text
-rightsdata@keymanpub.com
+admin@keymanpublishing.com
 ```
 
 The Google URL must be the public appointment schedule URL, usually beginning with:
@@ -61,9 +61,9 @@ The repository is configured for Vercel:
 
 1. Import the repository into Vercel.
 2. Add the five environment variables.
-3. Verify `keymanpub.com` in Resend and add the DNS records Resend provides.
-4. Attach `keymanpub.com` to the Vercel project.
-5. Deploy, submit a safe test through each form, and confirm receipt at `rightsdata@keymanpub.com`.
+3. Verify `keymanpublishing.com` in Resend and add the DNS records Resend provides.
+4. Attach `keymanpublishing.com` to the Vercel project.
+5. Deploy, submit a safe test through each form, and confirm receipt at `admin@keymanpublishing.com`.
 
 ## Verify
 

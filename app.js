@@ -91,6 +91,18 @@ catalogDialog?.addEventListener("click", (event) => {
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const isSupportedSongLink = (value) => {
+  try {
+    const url = new URL(value);
+    return (
+      url.protocol === "https:" &&
+      ["music.apple.com", "open.spotify.com", "spotify.link"].includes(url.hostname)
+    );
+  } catch {
+    return false;
+  }
+};
+
 const fieldMessages = {
   fullName: "Enter your full name.",
   email: "Enter a valid email address.",
@@ -98,11 +110,7 @@ const fieldMessages = {
   catalogSize: "Select an approximate catalog size.",
   message: "Tell me briefly what you need help with.",
   consent: "Confirm that Keyman may respond to your request.",
-  songTitle1: "Enter the first song title.",
-  songTitle2: "Enter the second song title.",
-  songTitle3: "Enter the third song title.",
-  songTitle4: "Enter the fourth song title.",
-  songTitle5: "Enter the fifth song title."
+  songLink: "Enter a Spotify or Apple Music song link."
 };
 
 const setFieldError = (form, name, message = "") => {
@@ -129,14 +137,17 @@ const validateForm = (form, formType) => {
   const data = new FormData(form);
   const requiredNames =
     formType === "catalog-check"
-      ? ["fullName", "email", "companyName", "songTitle1", "songTitle2", "songTitle3", "songTitle4", "songTitle5"]
+      ? ["fullName", "email", "companyName", "songLink"]
       : ["fullName", "email", "companyName", "catalogSize", "message"];
 
   let firstInvalid = null;
 
   requiredNames.forEach((name) => {
     const value = String(data.get(name) ?? "").trim();
-    const invalid = !value || (name === "email" && !emailPattern.test(value));
+    const invalid =
+      !value ||
+      (name === "email" && !emailPattern.test(value)) ||
+      (name === "songLink" && !isSupportedSongLink(value));
     if (!invalid) return;
 
     setFieldError(form, name, fieldMessages[name]);
@@ -198,13 +209,13 @@ const submitForm = async (form) => {
     clearErrors(form);
     const successMessage =
       formType === "catalog-check"
-        ? "Your five-song catalog check was sent. Keyman will follow up by email."
+        ? "Your catalog check was sent. Keyman will follow up by email."
         : "Your catalog inquiry was sent. Keyman will follow up by email.";
     setFormStatus(form, successMessage, "success");
   } catch (error) {
     setFormStatus(
       form,
-      error.message || "Your request could not be sent. Please email rightsdata@keymanpub.com.",
+      error.message || "Your request could not be sent. Please email admin@keymanpublishing.com.",
       "error"
     );
   } finally {
@@ -289,7 +300,7 @@ document.querySelector("[data-calendar-confirm]")?.addEventListener("click", () 
     return;
   }
   if (status) {
-    status.textContent = "The appointment schedule is ready to connect. Please email rightsdata@keymanpub.com in the meantime.";
+    status.textContent = "The appointment schedule is ready to connect. Please email admin@keymanpublishing.com in the meantime.";
   }
 });
 

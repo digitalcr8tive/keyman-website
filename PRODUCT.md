@@ -10,7 +10,7 @@ Music producers, songwriters, publishers, and independent catalog owners who nee
 
 ## Product Purpose
 
-Keyman presents music metadata and rights consulting services, establishes professional credibility, and converts qualified visitors into scheduled consultations. A secondary conversion path offers a no-cost Rights Gap Analysis for five song titles. Success means a visitor can understand the services, trust the experience behind them, book through Google Calendar, or submit the appropriate form without confusion.
+Keyman presents music metadata and rights consulting services, establishes professional credibility, and converts qualified visitors into scheduled consultations. A secondary conversion path offers a no-cost Rights Gap Analysis from a Spotify or Apple Music song link. Success means a visitor can understand the services, trust the experience behind them, book through Google Calendar, or submit the appropriate form without confusion.
 
 ## Brand Personality
 

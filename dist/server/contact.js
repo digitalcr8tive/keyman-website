@@ -4,15 +4,23 @@ const MAX_LENGTHS = {
   companyName: 140,
   catalogSize: 32,
   message: 4000,
-  songTitle1: 200,
-  songTitle2: 200,
-  songTitle3: 200,
-  songTitle4: 200,
-  songTitle5: 200
+  songLink: 500
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const CATALOG_SIZES = new Set(["Under 25", "25–100", "100–500", "500+"]);
+
+const isSupportedSongLink = (value) => {
+  try {
+    const url = new URL(value);
+    return (
+      url.protocol === "https:" &&
+      ["music.apple.com", "open.spotify.com", "spotify.link"].includes(url.hostname)
+    );
+  } catch {
+    return false;
+  }
+};
 
 const trimField = (value, maxLength) =>
   typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -25,11 +33,7 @@ export const normalizeSubmission = (payload = {}) => {
     companyName: trimField(payload.companyName, MAX_LENGTHS.companyName),
     catalogSize: trimField(payload.catalogSize, MAX_LENGTHS.catalogSize),
     message: trimField(payload.message, MAX_LENGTHS.message),
-    songTitle1: trimField(payload.songTitle1, MAX_LENGTHS.songTitle1),
-    songTitle2: trimField(payload.songTitle2, MAX_LENGTHS.songTitle2),
-    songTitle3: trimField(payload.songTitle3, MAX_LENGTHS.songTitle3),
-    songTitle4: trimField(payload.songTitle4, MAX_LENGTHS.songTitle4),
-    songTitle5: trimField(payload.songTitle5, MAX_LENGTHS.songTitle5),
+    songLink: trimField(payload.songLink, MAX_LENGTHS.songLink),
     website: trimField(payload.website, 240),
     consent: payload.consent === true
   };
@@ -49,9 +53,9 @@ export const validateSubmission = (data) => {
     if (!CATALOG_SIZES.has(data.catalogSize)) errors.catalogSize = "Select a valid catalog size.";
     if (!data.message) errors.message = "A description of the requested help is required.";
   } else {
-    ["songTitle1", "songTitle2", "songTitle3", "songTitle4", "songTitle5"].forEach((field) => {
-      if (!data[field]) errors[field] = "All five song titles are required.";
-    });
+    if (!isSupportedSongLink(data.songLink)) {
+      errors.songLink = "A valid Spotify or Apple Music song link is required.";
+    }
   }
 
   return errors;
@@ -86,11 +90,7 @@ export const createEmail = (data, env = process.env) => {
 
   if (isCatalogCheck) {
     detailRows.push(
-      row("Song title 1", data.songTitle1),
-      row("Song title 2", data.songTitle2),
-      row("Song title 3", data.songTitle3),
-      row("Song title 4", data.songTitle4),
-      row("Song title 5", data.songTitle5),
+      row("Spotify or Apple Music link", data.songLink),
       row("Optional notes", data.message)
     );
   } else {
@@ -99,7 +99,7 @@ export const createEmail = (data, env = process.env) => {
 
   return {
     from: env.RESEND_FROM_EMAIL,
-    to: [env.CONTACT_TO_EMAIL || "rightsdata@keymanpub.com"],
+    to: [env.CONTACT_TO_EMAIL || "admin@keymanpublishing.com"],
     reply_to: data.email,
     subject,
     html: `
@@ -139,7 +139,7 @@ export const processSubmission = async (payload, env = process.env, fetchImpleme
       status: 503,
       body: {
         ok: false,
-        message: "Secure email delivery is being configured. Please email rightsdata@keymanpub.com."
+        message: "Secure email delivery is being configured. Please email admin@keymanpublishing.com."
       }
     };
   }
@@ -165,7 +165,7 @@ export const processSubmission = async (payload, env = process.env, fetchImpleme
       status: 502,
       body: {
         ok: false,
-        message: "Email delivery was unavailable. Please email rightsdata@keymanpub.com."
+        message: "Email delivery was unavailable. Please email admin@keymanpublishing.com."
       }
     };
   }

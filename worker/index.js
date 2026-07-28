@@ -31,7 +31,7 @@ const withSecurityHeaders = async (response) => {
   headers.set("X-Frame-Options", "DENY");
   headers.set(
     "Content-Security-Policy",
-    "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://calendar.google.com; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://calendar.google.com https://embed.music.apple.com; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
   );
   return new Response(response.body, {
     status: response.status,
@@ -93,7 +93,7 @@ const worker = {
         return jsonResponse(
           {
             ok: false,
-            message: "Your request could not be sent. Please email rightsdata@keymanpub.com."
+            message: "Your request could not be sent. Please email admin@keymanpublishing.com."
           },
           400
         );

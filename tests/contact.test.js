@@ -23,11 +23,7 @@ const validCatalogCheck = {
   fullName: "Sam Writer",
   email: "sam@example.com",
   companyName: "Sam Songs",
-  songTitle1: "First Song",
-  songTitle2: "Second Song",
-  songTitle3: "Third Song",
-  songTitle4: "Fourth Song",
-  songTitle5: "Fifth Song",
+  songLink: "https://music.apple.com/us/album/example/123456789?i=987654321",
   message: "Released independently.",
   consent: true
 };
@@ -44,10 +40,10 @@ test("accepts complete inquiry data", () => {
   assert.deepEqual(errors, {});
 });
 
-test("requires all five catalog titles", () => {
-  const input = { ...validCatalogCheck, songTitle4: "" };
+test("requires a supported Spotify or Apple Music link", () => {
+  const input = { ...validCatalogCheck, songLink: "https://example.com/song" };
   const errors = validateSubmission(normalizeSubmission(input));
-  assert.equal(errors.songTitle4, "All five song titles are required.");
+  assert.equal(errors.songLink, "A valid Spotify or Apple Music song link is required.");
 });
 
 test("escapes untrusted content in the delivery email", () => {
@@ -56,8 +52,8 @@ test("escapes untrusted content in the delivery email", () => {
     fullName: '<img src=x onerror="alert(1)">'
   });
   const email = createEmail(data, {
-    RESEND_FROM_EMAIL: "Keyman <forms@keymanpub.com>",
-    CONTACT_TO_EMAIL: "rightsdata@keymanpub.com"
+    RESEND_FROM_EMAIL: "Keyman <forms@keymanpublishing.com>",
+    CONTACT_TO_EMAIL: "admin@keymanpublishing.com"
   });
   assert.doesNotMatch(email.html, /<img src=x/);
   assert.match(email.html, /&lt;img src=x/);
@@ -85,8 +81,8 @@ test("submits a valid catalog check to Resend", async () => {
     validCatalogCheck,
     {
       RESEND_API_KEY: "re_test",
-      RESEND_FROM_EMAIL: "Keyman <forms@keymanpub.com>",
-      CONTACT_TO_EMAIL: "rightsdata@keymanpub.com"
+      RESEND_FROM_EMAIL: "Keyman <forms@keymanpublishing.com>",
+      CONTACT_TO_EMAIL: "admin@keymanpublishing.com"
     },
     fakeFetch
   );
@@ -94,9 +90,9 @@ test("submits a valid catalog check to Resend", async () => {
   assert.equal(result.status, 200);
   assert.equal(capturedRequest.url, "https://api.resend.com/emails");
   const emailPayload = JSON.parse(capturedRequest.options.body);
-  assert.deepEqual(emailPayload.to, ["rightsdata@keymanpub.com"]);
+  assert.deepEqual(emailPayload.to, ["admin@keymanpublishing.com"]);
   assert.match(emailPayload.subject, /Rights Gap Analysis/);
-  assert.match(emailPayload.html, /Fifth Song/);
+  assert.match(emailPayload.html, /music\.apple\.com/);
 });
 
 test("silently accepts honeypot submissions without sending email", async () => {
@@ -105,7 +101,7 @@ test("silently accepts honeypot submissions without sending email", async () => 
     { ...validInquiry, website: "https://spam.example" },
     {
       RESEND_API_KEY: "re_test",
-      RESEND_FROM_EMAIL: "Keyman <forms@keymanpub.com>"
+      RESEND_FROM_EMAIL: "Keyman <forms@keymanpublishing.com>"
     },
     async () => {
       called = true;

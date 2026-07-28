@@ -46,7 +46,7 @@ export default async function handler(request, response) {
     console.error("Contact form error", error);
     return response.status(500).json({
       ok: false,
-      message: "Your request could not be sent. Please email rightsdata@keymanpub.com."
+      message: "Your request could not be sent. Please email admin@keymanpublishing.com."
     });
   }
 }
