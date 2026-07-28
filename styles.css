@@ -2266,7 +2266,7 @@ p {
 .placements {
   max-width: var(--max-width);
   margin-inline: auto;
-  padding: clamp(62px, 7vw, 96px) clamp(24px, 5vw, 72px);
+  padding: clamp(44px, 4.5vw, 64px) clamp(24px, 5vw, 72px) clamp(62px, 7vw, 96px);
   border-inline: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
