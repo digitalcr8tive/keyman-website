@@ -2383,7 +2383,6 @@ p {
   margin-bottom: 14px;
   display: flex;
   align-items: end;
-  justify-content: space-between;
   gap: 24px;
 }
 
@@ -2405,12 +2404,14 @@ p {
   font-size: 0.7rem;
 }
 
-.track-carousel-controls {
-  display: flex;
-  gap: 8px;
+.track-carousel-stage {
+  position: relative;
 }
 
-.track-carousel-controls button {
+.track-carousel-edge {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
   width: 44px;
   height: 44px;
   border: 1px solid var(--rule);
@@ -2419,16 +2420,30 @@ p {
   background: var(--canvas);
   color: var(--ink);
   cursor: pointer;
+  transform: translateY(-50%);
   transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
 }
 
-.track-carousel-controls button:hover {
+.track-carousel-edge-prev {
+  left: -22px;
+}
+
+.track-carousel-edge-next {
+  right: -22px;
+}
+
+.track-carousel-edge:hover {
   border-color: var(--brand);
   background: var(--brand);
   color: var(--canvas);
 }
 
-.track-carousel-controls button span {
+.track-carousel-edge:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+
+.track-carousel-edge span {
   font-size: 1.2rem;
   line-height: 1;
 }
@@ -2715,6 +2730,21 @@ p {
     align-items: flex-start;
     flex-direction: column;
     gap: 2px;
+  }
+
+  .track-carousel-edge {
+    width: 42px;
+    height: 42px;
+    background: rgb(255 255 255 / 94%);
+    box-shadow: 0 3px 14px rgb(20 18 17 / 12%);
+  }
+
+  .track-carousel-edge-prev {
+    left: 4px;
+  }
+
+  .track-carousel-edge-next {
+    right: 4px;
   }
 
   .placements-heading {
