@@ -2298,6 +2298,8 @@ p {
 }
 
 .vince-case-copy {
+  grid-column: 1;
+  grid-row: 1;
   padding: clamp(48px, 5vw, 76px) clamp(40px, 4vw, 64px);
   display: flex;
   flex-direction: column;
@@ -2323,6 +2325,8 @@ p {
 }
 
 .vince-case-photo {
+  grid-column: 2;
+  grid-row: 1;
   position: relative;
   min-height: 520px;
   margin: 0;
@@ -2338,8 +2342,8 @@ p {
 
 .vince-case-photo figcaption {
   position: absolute;
+  right: 18px;
   bottom: 18px;
-  left: 18px;
   padding: 7px 11px;
   color: var(--ink);
   background: oklch(1 0 0 / 0.94);
@@ -2710,6 +2714,8 @@ p {
   }
 
   .vince-case-copy {
+    grid-column: 1;
+    grid-row: 2;
     padding: 52px 24px 58px;
   }
 
@@ -2718,6 +2724,8 @@ p {
   }
 
   .vince-case-photo {
+    grid-column: 1;
+    grid-row: 1;
     min-height: 0;
     aspect-ratio: 1;
   }
