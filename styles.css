@@ -2285,32 +2285,33 @@ p {
 .placements {
   max-width: var(--max-width);
   margin-inline: auto;
-  padding: clamp(44px, 4.5vw, 64px) clamp(24px, 5vw, 72px) clamp(62px, 7vw, 96px);
   border-inline: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
 
 .vince-case-intro {
-  margin-bottom: clamp(42px, 5vw, 72px);
+  min-height: 520px;
+  border-bottom: 1px solid var(--rule);
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
-  gap: clamp(44px, 7vw, 108px);
 }
 
 .vince-case-copy {
-  padding-block: clamp(18px, 3vw, 48px);
-  align-self: center;
+  padding: clamp(48px, 5vw, 76px) clamp(40px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .vince-case-copy h2 {
-  max-width: 8ch;
   margin-bottom: 24px;
   font-family: var(--font-display);
-  font-size: clamp(3.4rem, 6vw, 5.75rem);
+  font-size: clamp(2.8rem, 3.7vw, 4.2rem);
   font-weight: 500;
   letter-spacing: -0.035em;
-  line-height: 0.95;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .vince-case-copy > p:last-child {
@@ -2323,7 +2324,7 @@ p {
 
 .vince-case-photo {
   position: relative;
-  min-height: 500px;
+  min-height: 520px;
   margin: 0;
   overflow: hidden;
   background: var(--surface-strong);
@@ -2337,8 +2338,8 @@ p {
 
 .vince-case-photo figcaption {
   position: absolute;
-  right: 18px;
   bottom: 18px;
+  left: 18px;
   padding: 7px 11px;
   color: var(--ink);
   background: oklch(1 0 0 / 0.94);
@@ -2346,6 +2347,10 @@ p {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.track-carousel {
+  margin: clamp(44px, 4.5vw, 64px) clamp(24px, 5vw, 72px) clamp(62px, 7vw, 96px);
 }
 
 .placements-heading {
@@ -2425,11 +2430,11 @@ p {
 }
 
 .track-carousel-edge-prev {
-  left: -72px;
+  left: -60px;
 }
 
 .track-carousel-edge-next {
-  right: -72px;
+  right: -60px;
 }
 
 .track-carousel-edge:hover {
@@ -2697,29 +2702,29 @@ p {
   }
 
   .placements {
-    padding: 52px 0 58px;
     border-inline: 0;
   }
 
   .vince-case-intro {
-    margin-bottom: 38px;
-    padding-inline: 24px;
     grid-template-columns: 1fr;
-    gap: 28px;
   }
 
   .vince-case-copy {
-    padding-block: 0;
+    padding: 52px 24px 58px;
   }
 
   .vince-case-copy h2 {
-    max-width: 9ch;
-    font-size: clamp(3.1rem, 15vw, 4.25rem);
+    font-size: clamp(2.1rem, 9.5vw, 3.2rem);
   }
 
   .vince-case-photo {
     min-height: 0;
     aspect-ratio: 1;
+  }
+
+  .track-carousel {
+    margin: 52px 0 0;
+    padding-bottom: 58px;
   }
 
   .track-carousel-toolbar {
