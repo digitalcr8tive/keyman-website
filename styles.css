@@ -344,7 +344,7 @@ p {
 
 .keyman-standard-grid {
   border: 1px solid var(--rule);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .keyman-standard-grid .service-item {
@@ -353,6 +353,12 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.keyman-standard-logo img {
+  width: min(100%, 230px);
+  height: auto;
+  margin-inline: auto;
 }
 
 .service-item {
@@ -3139,5 +3145,34 @@ p {
 
   .conversion-section > article {
     padding-inline: 16px;
+  }
+}
+
+/* Keep the Keyman Standard as a balanced four-tile band. */
+@media (max-width: 1180px) {
+  .keyman-standard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .keyman-standard-grid .service-item:nth-child(3) {
+    border-top: 1px solid var(--rule);
+    border-left: 0;
+  }
+
+  .keyman-standard-grid .service-item:nth-child(4) {
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+}
+
+@media (max-width: 420px) {
+  .keyman-standard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .keyman-standard-grid .service-item + .service-item,
+  .keyman-standard-grid .service-item:nth-child(4) {
+    border-top: 1px solid var(--rule);
+    border-left: 0;
   }
 }
