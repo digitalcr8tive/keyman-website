@@ -2,6 +2,11 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const siteHeader = document.querySelector("[data-header]");
 const catalogDialog = document.querySelector("[data-catalog-dialog]");
+const serviceOrigin = "https://keyman-music-rights.munyunman501.chatgpt.site";
+const apiUrl = (path) =>
+  window.location.hostname === "digitalcr8tive.github.io"
+    ? `${serviceOrigin}${path}`
+    : path;
 
 const setMenuState = (open) => {
   menuToggle?.setAttribute("aria-expanded", String(open));
@@ -194,7 +199,7 @@ const submitForm = async (form) => {
   setFormStatus(form, "Sending your request securely.");
 
   try {
-    const response = await fetch("/api/contact", {
+    const response = await fetch(apiUrl("/api/contact"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -264,7 +269,7 @@ const connectCalendar = async () => {
   if (!confirmButton || !status) return;
 
   try {
-    const response = await fetch("/api/config", {
+    const response = await fetch(apiUrl("/api/config"), {
       headers: { Accept: "application/json" }
     });
     if (!response.ok) throw new Error("Calendar configuration unavailable.");
@@ -302,6 +307,77 @@ document.querySelector("[data-calendar-confirm]")?.addEventListener("click", () 
   if (status) {
     status.textContent = "The appointment schedule is ready to connect. Please email admin@keymanpublishing.com in the meantime.";
   }
+});
+
+document.querySelectorAll("[data-track-carousel]").forEach((carousel) => {
+  const viewport = carousel.querySelector("[data-track-viewport]");
+  const cards = [...carousel.querySelectorAll("[data-track-card]")];
+  const previousButton = carousel.querySelector("[data-track-prev]");
+  const nextButton = carousel.querySelector("[data-track-next]");
+  const position = carousel.querySelector("[data-track-position]");
+  if (!viewport || cards.length === 0 || !previousButton || !nextButton) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const visibleCount = () => {
+    const cardWidth = cards[0]?.getBoundingClientRect().width || viewport.clientWidth;
+    return Math.max(1, Math.min(cards.length, Math.round(viewport.clientWidth / cardWidth)));
+  };
+
+  const currentIndex = () => {
+    const cardWidth = cards[0]?.getBoundingClientRect().width || viewport.clientWidth;
+    return Math.max(0, Math.min(cards.length - 1, Math.round(viewport.scrollLeft / cardWidth)));
+  };
+
+  const updatePosition = () => {
+    if (!position) return;
+    const start = currentIndex();
+    const end = Math.min(cards.length, start + visibleCount());
+    position.textContent = `Tracks ${start + 1}–${end} of ${cards.length}`;
+  };
+
+  const goTo = (requestedIndex) => {
+    const pageSize = visibleCount();
+    const maximumStart = Math.max(0, cards.length - pageSize);
+    let index = requestedIndex;
+    if (index > maximumStart) index = 0;
+    if (index < 0) index = maximumStart;
+    viewport.scrollTo({
+      left: cards[index].offsetLeft,
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth"
+    });
+  };
+
+  previousButton.addEventListener("click", () => {
+    goTo(currentIndex() - visibleCount());
+  });
+
+  nextButton.addEventListener("click", () => {
+    goTo(currentIndex() + visibleCount());
+  });
+
+  viewport.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goTo(currentIndex() - 1);
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goTo(currentIndex() + 1);
+    }
+  });
+
+  let positionFrame = 0;
+  viewport.addEventListener(
+    "scroll",
+    () => {
+      cancelAnimationFrame(positionFrame);
+      positionFrame = requestAnimationFrame(updatePosition);
+    },
+    { passive: true }
+  );
+  window.addEventListener("resize", updatePosition);
+  updatePosition();
 });
 
 document.querySelectorAll("[data-current-year]").forEach((year) => {

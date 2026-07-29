@@ -347,6 +347,14 @@ p {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.keyman-standard-grid .service-item {
+  min-height: 250px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .service-item {
   min-height: 290px;
   padding: 40px 25px 36px;
@@ -2276,6 +2284,64 @@ p {
   border-bottom: 1px solid var(--rule);
 }
 
+.vince-case-intro {
+  margin-bottom: clamp(42px, 5vw, 72px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  align-items: stretch;
+  gap: clamp(44px, 7vw, 108px);
+}
+
+.vince-case-copy {
+  padding-block: clamp(18px, 3vw, 48px);
+  align-self: center;
+}
+
+.vince-case-copy h2 {
+  max-width: 8ch;
+  margin-bottom: 24px;
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 6vw, 5.75rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.vince-case-copy > p:last-child {
+  max-width: 62ch;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.vince-case-photo {
+  position: relative;
+  min-height: 500px;
+  margin: 0;
+  overflow: hidden;
+  background: var(--surface-strong);
+}
+
+.vince-case-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vince-case-photo figcaption {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 7px 11px;
+  color: var(--ink);
+  background: oklch(1 0 0 / 0.94);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .placements-heading {
   margin-bottom: 36px;
   display: grid;
@@ -2305,6 +2371,60 @@ p {
   border-block: 1px solid var(--rule);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.track-carousel-toolbar {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.track-carousel-toolbar p {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.track-carousel-toolbar strong {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.track-carousel-toolbar [data-track-position] {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.track-carousel-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.track-carousel-controls button {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--rule);
+  display: grid;
+  place-items: center;
+  background: var(--canvas);
+  color: var(--ink);
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.track-carousel-controls button:hover {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--canvas);
+}
+
+.track-carousel-controls button span {
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 .track-player {
@@ -2355,12 +2475,28 @@ p {
   align-items: flex-start;
 }
 
-.vince-track-grid .track-player:nth-child(3n + 1) {
-  border-left: 0;
+.vince-track-grid {
+  position: relative;
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2px) / 3);
+  gap: 1px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: none;
 }
 
-.vince-track-grid .track-player:nth-child(n + 4) {
-  border-top: 1px solid var(--rule);
+.vince-track-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.vince-track-grid .track-player {
+  border-left: 0;
+  background: var(--canvas);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .track-player iframe {
@@ -2544,6 +2680,37 @@ p {
     border-inline: 0;
   }
 
+  .vince-case-intro {
+    margin-bottom: 38px;
+    padding-inline: 24px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .vince-case-copy {
+    padding-block: 0;
+  }
+
+  .vince-case-copy h2 {
+    max-width: 9ch;
+    font-size: clamp(3.1rem, 15vw, 4.25rem);
+  }
+
+  .vince-case-photo {
+    min-height: 0;
+    aspect-ratio: 1;
+  }
+
+  .track-carousel-toolbar {
+    padding-inline: 24px;
+  }
+
+  .track-carousel-toolbar p {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+
   .placements-heading {
     padding-inline: 24px;
     grid-template-columns: 1fr;
@@ -2585,6 +2752,15 @@ p {
     border-left: 1px solid var(--rule);
   }
 
+  .vince-track-grid .track-player:nth-child(3n + 1) {
+    border-left: 1px solid var(--rule);
+  }
+
+  .vince-track-grid {
+    grid-auto-columns: minmax(280px, 84vw);
+  }
+
+  .vince-track-grid .track-player,
   .vince-track-grid .track-player:nth-child(3n + 1) {
     border-left: 1px solid var(--rule);
   }

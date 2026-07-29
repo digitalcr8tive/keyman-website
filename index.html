@@ -25,8 +25,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=content-20260729-1">
-  <script src="app.js?v=content-20260729-1" type="module"></script>
+  <link rel="stylesheet" href="styles.css?v=content-20260729-2">
+  <script src="app.js?v=content-20260729-2" type="module"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -327,52 +327,71 @@
     </section>
 
     <section class="placements" id="vince-made-the-beat" aria-labelledby="vince-title">
-      <div class="placements-heading">
-        <p class="section-label">Client case study</p>
-        <h2 id="vince-title">Vince Made The Beat</h2>
-        <p>Rather than give up a piece of his publishing through a traditional co-publishing deal, Vince wanted to fund himself against his own catalog. Keyman sourced multiple royalty-advance options through his BMI performance royalties — funding him without touching his mechanicals. His mechanical royalty checks keep coming in every month, untouched, while the advance was drawn purely against future BMI performance income.</p>
+      <div class="vince-case-intro">
+        <div class="vince-case-copy">
+          <p class="section-label">Client case study</p>
+          <h2 id="vince-title">Vince Made The Beat</h2>
+          <p>Rather than give up a piece of his publishing through a traditional co-publishing deal, Vince wanted to fund himself against his own catalog. Keyman sourced multiple royalty-advance options through his BMI performance royalties — funding him without touching his mechanicals. His mechanical royalty checks keep coming in every month, untouched, while the advance was drawn purely against future BMI performance income.</p>
+        </div>
+        <figure class="vince-case-photo">
+          <img src="assets/vince-made-the-beat.jpg" width="1365" height="1365" loading="lazy" alt="Vince Made The Beat seated with headphones, a trumpet, keyboard, bass, and recording equipment">
+          <figcaption>Vince Made The Beat</figcaption>
+        </figure>
       </div>
-      <div class="track-grid vince-track-grid">
-        <article class="track-player">
+      <div class="track-carousel" data-track-carousel aria-label="Vince Made The Beat selected credits">
+        <div class="track-carousel-toolbar">
+          <p><strong>Selected credits</strong><span data-track-position>Tracks 1–3 of 10</span></p>
+          <div class="track-carousel-controls">
+            <button type="button" data-track-prev aria-label="Show previous songs">
+              <span aria-hidden="true">←</span>
+            </button>
+            <button type="button" data-track-next aria-label="Show next songs">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+        <div class="track-grid vince-track-grid" data-track-viewport tabindex="0">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>01</span><h3>Fallin <small>Loe Shimmy</small></h3></div>
           <iframe title="Listen to Fallin by Loe Shimmy on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/fallin/1771074523" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>02</span><h3>Heal In Pain <small>Lil Tony Official</small></h3></div>
           <iframe title="Listen to Heal In Pain by Lil Tony Official on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/heal-in-pain/1825524799" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>03</span><h3>Miracle <small>ffawty</small></h3></div>
           <iframe title="Listen to Miracle by ffawty on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/album/miracle-single/1774962410" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>04</span><h3>All My Love <small>Loe Shimmy</small></h3></div>
           <iframe title="Listen to All My Love by Loe Shimmy on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/all-my-love/1745746123" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>05</span><h3>Bounty (feat. Kodak Black) <small>Loe Shimmy</small></h3></div>
           <iframe title="Listen to Bounty featuring Kodak Black by Loe Shimmy on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/album/bounty-feat-kodak-black-single/1771484303?i=1771074589" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>06</span><h3>Get Away (feat. Loe Shimmy) <small>Kodak Black</small></h3></div>
           <iframe title="Listen to Get Away featuring Loe Shimmy by Kodak Black on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/get-away-feat-loe-shimmy/1688499347" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>07</span><h3>Crystal Clear <small>Loe Shimmy</small></h3></div>
           <iframe title="Listen to Crystal Clear by Loe Shimmy on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/crystal-clear/1736311521" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>08</span><h3>You Decide <small>Loe Shimmy</small></h3></div>
           <iframe title="Listen to You Decide by Loe Shimmy on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/you-decide/1828426108" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>09</span><h3>All My Life <small>Loe Shimmy</small></h3></div>
           <iframe title="Listen to All My Life by Loe Shimmy on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/all-my-life/1750029850" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
-        <article class="track-player">
+        <article class="track-player" data-track-card>
           <div class="track-caption"><span>10</span><h3>Maybach Curtains <small>Loe Shimmy</small></h3></div>
           <iframe title="Listen to Maybach Curtains by Loe Shimmy on Apple Music" loading="lazy" height="175" src="https://embed.music.apple.com/us/song/maybach-curtains/1736311539" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"></iframe>
         </article>
+        </div>
       </div>
     </section>
 

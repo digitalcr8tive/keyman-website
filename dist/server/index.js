@@ -10,6 +10,18 @@ const jsonResponse = (body, status = 200, additionalHeaders = {}) =>
     }
   });
 
+const corsHeaders = (request, env) => {
+  const origin = request.headers.get("origin");
+  if (!origin || !isAllowedOrigin(request, env)) return {};
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Max-Age": "86400",
+    Vary: "Origin"
+  };
+};
+
 const validAppointmentUrl = (value) => {
   try {
     const url = new URL(value);
@@ -44,6 +56,19 @@ const worker = {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    if (url.pathname.startsWith("/api/") && request.method === "OPTIONS") {
+      if (!isAllowedOrigin(request, env)) {
+        return jsonResponse(
+          { ok: false, message: "Request origin was not accepted." },
+          403
+        );
+      }
+      return new Response(null, {
+        status: 204,
+        headers: corsHeaders(request, env)
+      });
+    }
+
     if (url.pathname === "/api/config") {
       const configuredUrl = env.GOOGLE_APPOINTMENT_URL || "";
       return jsonResponse(
@@ -51,7 +76,10 @@ const worker = {
           googleAppointmentUrl: validAppointmentUrl(configuredUrl) ? configuredUrl : ""
         },
         200,
-        { "Cache-Control": "public, max-age=300" }
+        {
+          "Cache-Control": "public, max-age=300",
+          ...corsHeaders(request, env)
+        }
       );
     }
 
@@ -60,7 +88,7 @@ const worker = {
         return jsonResponse(
           { ok: false, message: "Method not allowed." },
           405,
-          { Allow: "POST" }
+          { Allow: "POST", ...corsHeaders(request, env) }
         );
       }
 
@@ -75,14 +103,15 @@ const worker = {
       if (contentLength > 64 * 1024) {
         return jsonResponse(
           { ok: false, message: "Request body is too large." },
-          413
+          413,
+          corsHeaders(request, env)
         );
       }
 
       try {
         const payload = await request.json();
         const result = await processSubmission(payload, env);
-        return jsonResponse(result.body, result.status);
+        return jsonResponse(result.body, result.status, corsHeaders(request, env));
       } catch (error) {
         console.error(
           JSON.stringify({
@@ -95,7 +124,8 @@ const worker = {
             ok: false,
             message: "Your request could not be sent. Please email admin@keymanpublishing.com."
           },
-          400
+          400,
+          corsHeaders(request, env)
         );
       }
     }
