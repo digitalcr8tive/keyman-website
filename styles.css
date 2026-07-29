@@ -342,6 +342,11 @@ p {
   grid-template-columns: repeat(6, 1fr);
 }
 
+.keyman-standard-grid {
+  border: 1px solid var(--rule);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .service-item {
   min-height: 290px;
   padding: 40px 25px 36px;
@@ -2333,6 +2338,31 @@ p {
   line-height: 1;
 }
 
+.track-caption h3 small {
+  margin-top: 7px;
+  display: block;
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.055em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.vince-track-grid .track-caption {
+  min-height: 72px;
+  align-items: flex-start;
+}
+
+.vince-track-grid .track-player:nth-child(3n + 1) {
+  border-left: 0;
+}
+
+.vince-track-grid .track-player:nth-child(n + 4) {
+  border-top: 1px solid var(--rule);
+}
+
 .track-player iframe {
   width: 100%;
   height: 175px;
@@ -2552,6 +2582,10 @@ p {
   }
 
   .track-player + .track-player {
+    border-left: 1px solid var(--rule);
+  }
+
+  .vince-track-grid .track-player:nth-child(3n + 1) {
     border-left: 1px solid var(--rule);
   }
 
