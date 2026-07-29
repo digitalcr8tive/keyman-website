@@ -2357,6 +2357,14 @@ p {
   margin: clamp(44px, 4.5vw, 64px) clamp(24px, 5vw, 72px) clamp(62px, 7vw, 96px);
 }
 
+.client-credits-section {
+  padding: clamp(52px, 5.5vw, 84px) clamp(24px, 5vw, 72px) clamp(62px, 7vw, 96px);
+}
+
+.client-credits-section .track-carousel {
+  margin: 0;
+}
+
 .placements-heading {
   margin-bottom: 36px;
   display: grid;
@@ -2733,6 +2741,14 @@ p {
   .track-carousel {
     margin: 52px 0 0;
     padding-bottom: 58px;
+  }
+
+  .client-credits-section {
+    padding: 52px 0 58px;
+  }
+
+  .client-credits-section .track-carousel {
+    padding-bottom: 0;
   }
 
   .track-carousel-toolbar {
