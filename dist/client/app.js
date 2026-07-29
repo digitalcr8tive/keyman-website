@@ -324,9 +324,13 @@ document.querySelectorAll("[data-track-carousel]").forEach((carousel) => {
     return Math.max(1, Math.min(cards.length, Math.round(viewport.clientWidth / cardWidth)));
   };
 
+  const cardStep = () =>
+    cards.length > 1
+      ? cards[1].offsetLeft - cards[0].offsetLeft
+      : cards[0]?.getBoundingClientRect().width || viewport.clientWidth;
+
   const currentIndex = () => {
-    const cardWidth = cards[0]?.getBoundingClientRect().width || viewport.clientWidth;
-    return Math.max(0, Math.min(cards.length - 1, Math.round(viewport.scrollLeft / cardWidth)));
+    return Math.max(0, Math.min(cards.length - 1, Math.round(viewport.scrollLeft / cardStep())));
   };
 
   const updatePosition = () => {
@@ -343,7 +347,7 @@ document.querySelectorAll("[data-track-carousel]").forEach((carousel) => {
     if (index > maximumStart) index = 0;
     if (index < 0) index = maximumStart;
     viewport.scrollTo({
-      left: cards[index].offsetLeft,
+      left: cards[index].offsetLeft - cards[0].offsetLeft,
       behavior: prefersReducedMotion.matches ? "auto" : "smooth"
     });
   };
