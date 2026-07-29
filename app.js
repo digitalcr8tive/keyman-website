@@ -3,8 +3,10 @@ const mobileNav = document.querySelector("[data-mobile-nav]");
 const siteHeader = document.querySelector("[data-header]");
 const catalogDialog = document.querySelector("[data-catalog-dialog]");
 const serviceOrigin = "https://keyman-music-rights.munyunman501.chatgpt.site";
+const formSubmitEndpoint = "https://formsubmit.co/ajax/admin@keymanpublishing.com";
+const isGitHubPages = window.location.hostname === "digitalcr8tive.github.io";
 const apiUrl = (path) =>
-  window.location.hostname === "digitalcr8tive.github.io"
+  isGitHubPages
     ? `${serviceOrigin}${path}`
     : path;
 
@@ -199,11 +201,32 @@ const submitForm = async (form) => {
   setFormStatus(form, "Sending your request securely.");
 
   try {
-    const response = await fetch(apiUrl("/api/contact"), {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    let response;
+    if (isGitHubPages) {
+      const deliveryData = new FormData();
+      Object.entries(payload).forEach(([name, value]) => {
+        deliveryData.append(name, String(value));
+      });
+      deliveryData.append(
+        "_subject",
+        formType === "catalog-check"
+          ? `Rights Gap Analysis request from ${payload.fullName}`
+          : `Catalog inquiry from ${payload.fullName}`
+      );
+      deliveryData.append("_template", "table");
+      deliveryData.append("_captcha", "false");
+      response = await fetch(formSubmitEndpoint, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: deliveryData
+      });
+    } else {
+      response = await fetch(apiUrl("/api/contact"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    }
     const result = await response.json().catch(() => ({}));
 
     if (!response.ok) {

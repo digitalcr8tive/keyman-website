@@ -8,7 +8,7 @@ One-page consulting website for Keyman Music Metadata Consultant. The site inclu
 - Rights Gap Analysis form for a Spotify or Apple Music song link
 - Google Calendar appointment schedule integration
 - Credentials, selected credits, process, contact, privacy, and terms
-- Server-side Resend delivery with validation, origin checks, honeypot protection, and best-effort rate limiting
+- FormSubmit delivery on GitHub Pages, with server-side Resend delivery available on the hosted Worker
 
 ## Run locally
 
@@ -22,6 +22,8 @@ npm run dev
 Open `http://127.0.0.1:4173`.
 
 The page and validation work without service credentials. Email delivery and live appointment availability require the environment values below.
+
+The public GitHub Pages form posts to FormSubmit for `admin@keymanpublishing.com`. The first submission triggers FormSubmit's one-time confirmation email; delivery begins after that confirmation link is accepted.
 
 ## Required configuration
 
