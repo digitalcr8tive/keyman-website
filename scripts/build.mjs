@@ -16,7 +16,8 @@ const staticFiles = [
   "privacy.html",
   "terms.html",
   "styles.css",
-  "app.js"
+  "app.js",
+  "lib/calendar.js"
 ];
 
 await Promise.all(

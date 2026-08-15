@@ -590,7 +590,8 @@ p {
 }
 
 .field input,
-.field textarea {
+.field textarea,
+.field select {
   width: 100%;
   min-height: 48px;
   padding: 12px 13px;
@@ -613,19 +614,22 @@ p {
 }
 
 .field input:hover,
-.field textarea:hover {
+.field textarea:hover,
+.field select:hover {
   border-color: oklch(0.68 0.012 25);
 }
 
 .field input:focus,
-.field textarea:focus {
+.field textarea:focus,
+.field select:focus {
   border-color: var(--brand);
   box-shadow: 0 0 0 3px var(--brand-soft);
   outline: none;
 }
 
 .field input[aria-invalid="true"],
-.field textarea[aria-invalid="true"] {
+.field textarea[aria-invalid="true"],
+.field select[aria-invalid="true"] {
   border-color: var(--error);
 }
 
@@ -1634,14 +1638,8 @@ p {
     width: 100%;
   }
 
-  .calendar-shell,
-  .calendar-loading,
-  .calendar-unavailable {
-    min-height: 420px;
-  }
-
-  .calendar-frame {
-    min-height: 620px;
+  .booking-date-time {
+    grid-template-columns: 1fr;
   }
 
   .credentials {
@@ -2064,7 +2062,8 @@ p {
 }
 
 .field input,
-.field textarea {
+.field textarea,
+.field select {
   min-height: 38px;
   padding: 8px 10px;
   font-size: 0.75rem;
@@ -2132,17 +2131,43 @@ p {
 }
 
 .booking-panel > .booking-instruction {
-  margin: 0 auto 9px;
+  margin: 0 auto 14px;
+  max-width: 36ch;
   color: var(--muted);
   font-size: 0.72rem;
 }
 
-.calendar-shell {
-  min-height: 0;
-  border: 0;
-  display: block;
-  background: transparent;
-  overflow: visible;
+.calendar-booking-form {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+
+.booking-date-time {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 10px;
+}
+
+.calendar-booking-form .field label span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.calendar-booking-form .field textarea {
+  min-height: 76px;
+}
+
+.calendar-booking-form .button {
+  width: 100%;
+  min-height: 38px;
+  margin-top: 2px;
+  font-size: 0.64rem;
+}
+
+.calendar-status {
+  min-height: 2.5em;
+  margin-top: 8px;
 }
 
 .calendar-heading {

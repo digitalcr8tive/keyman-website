@@ -1,3 +1,5 @@
+import { buildGoogleCalendarUrl } from "./lib/calendar.js";
+
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const mobileNav = document.querySelector("[data-mobile-nav]");
 const siteHeader = document.querySelector("[data-header]");
@@ -271,66 +273,54 @@ document.querySelectorAll("[data-form]").forEach((form) => {
   });
 });
 
-const isGoogleAppointmentUrl = (value) => {
-  try {
-    const url = new URL(value);
-    return (
-      url.protocol === "https:" &&
-      url.hostname === "calendar.google.com" &&
-      url.pathname.includes("/calendar/appointments/")
-    );
-  } catch {
-    return false;
-  }
-};
+const calendarForm = document.querySelector("[data-calendar-form]");
 
-let googleAppointmentUrl = "";
-
-const connectCalendar = async () => {
-  const confirmButton = document.querySelector("[data-calendar-confirm]");
+if (calendarForm) {
+  const dateField = calendarForm.querySelector('[name="bookingDate"]');
+  const timeZoneField = calendarForm.querySelector('[name="bookingTimeZone"]');
   const status = document.querySelector("[data-calendar-status]");
-  if (!confirmButton || !status) return;
 
-  try {
-    const response = await fetch(apiUrl("/api/config"), {
-      headers: { Accept: "application/json" }
-    });
-    if (!response.ok) throw new Error("Calendar configuration unavailable.");
-    const config = await response.json();
-    if (!isGoogleAppointmentUrl(config.googleAppointmentUrl)) {
-      throw new Error("Calendar URL is not configured.");
-    }
-    googleAppointmentUrl = config.googleAppointmentUrl;
-    status.textContent = "Live availability is connected through Google Calendar.";
-  } catch {
+  if (dateField) {
+    const today = new Date();
+    const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60_000)
+      .toISOString()
+      .slice(0, 10);
+    dateField.min = localDate;
+  }
+
+  const browserTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if (timeZoneField && [...timeZoneField.options].some((option) => option.value === browserTimeZone)) {
+    timeZoneField.value = browserTimeZone;
+  }
+
+  calendarForm.addEventListener("submit", (event) => {
+    event.preventDefault();
     status.textContent = "";
-  }
-};
+    status.classList.remove("is-error", "is-success");
 
-connectCalendar();
+    if (!calendarForm.reportValidity()) return;
 
-document.querySelectorAll(".calendar-days button").forEach((dayButton) => {
-  dayButton.addEventListener("click", () => {
-    document.querySelectorAll(".calendar-days button").forEach((button) => {
-      button.classList.remove("is-selected");
-      button.removeAttribute("aria-pressed");
-    });
-    dayButton.classList.add("is-selected");
-    dayButton.setAttribute("aria-pressed", "true");
+    const data = new FormData(calendarForm);
+
+    try {
+      const calendarUrl = buildGoogleCalendarUrl({
+        fullName: data.get("bookingName"),
+        email: data.get("bookingEmail"),
+        date: data.get("bookingDate"),
+        time: data.get("bookingTime"),
+        timeZone: data.get("bookingTimeZone"),
+        notes: data.get("bookingNotes")
+      });
+
+      window.open(calendarUrl.toString(), "_blank", "noopener");
+      status.textContent = "Google Calendar is open. Review the details and click Save to complete your booking.";
+      status.classList.add("is-success");
+    } catch (error) {
+      status.textContent = error.message || "Please review your booking details.";
+      status.classList.add("is-error");
+    }
   });
-});
-
-document.querySelector("[data-calendar-confirm]")?.addEventListener("click", () => {
-  const status = document.querySelector("[data-calendar-status]");
-  if (googleAppointmentUrl) {
-    window.open(googleAppointmentUrl, "_blank", "noopener");
-    if (status) status.textContent = "Opening the secure Google appointment schedule.";
-    return;
-  }
-  if (status) {
-    status.textContent = "The appointment schedule is ready to connect. Please email admin@keymanpublishing.com in the meantime.";
-  }
-});
+}
 
 document.querySelectorAll("[data-track-carousel]").forEach((carousel) => {
   const viewport = carousel.querySelector("[data-track-viewport]");

@@ -25,8 +25,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=content-20260804-12">
-  <script src="app.js?v=content-20260804-12" type="module"></script>
+  <link rel="stylesheet" href="styles.css?v=calendar-20260814-2">
+  <script src="app.js?v=calendar-20260814-2" type="module"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -249,45 +249,51 @@
 
       <article class="booking-panel" id="book">
         <p class="section-label">Book a time to talk</p>
-        <p class="booking-instruction">Select a time that works for you.</p>
-        <div class="calendar-shell" data-calendar-shell>
-          <div class="calendar-heading">
-            <span aria-hidden="true">‹</span>
-            <strong>July 2026</strong>
-            <span aria-hidden="true">›</span>
+        <p class="booking-instruction">Choose a date and time, then save the invitation in Google Calendar.</p>
+        <form class="calendar-booking-form" data-calendar-form novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="booking-name">Full name</label>
+              <input id="booking-name" name="bookingName" type="text" autocomplete="name" maxlength="100" required>
+            </div>
+            <div class="field">
+              <label for="booking-email">Email address</label>
+              <input id="booking-email" name="bookingEmail" type="email" autocomplete="email" maxlength="160" required>
+            </div>
           </div>
-          <div class="calendar-weekdays" aria-hidden="true">
-            <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+          <div class="booking-date-time">
+            <div class="field">
+              <label for="booking-date">Appointment date</label>
+              <input id="booking-date" name="bookingDate" type="date" required>
+            </div>
+            <div class="field">
+              <label for="booking-time">Appointment time</label>
+              <select id="booking-time" name="bookingTime" required>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+              </select>
+            </div>
           </div>
-          <div class="calendar-days" aria-label="Choose an appointment date">
-            <span class="outside-month">28</span><span class="outside-month">29</span><span class="outside-month">30</span>
-            <button type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button">4</button>
-            <button type="button">5</button><button type="button">6</button><button type="button">7</button><button type="button">8</button><button type="button">9</button><button type="button">10</button><button type="button">11</button>
-            <button type="button">12</button><button type="button">13</button><button type="button">14</button><button type="button">15</button><button type="button">16</button><button type="button">17</button><button type="button">18</button>
-            <button type="button">19</button><button type="button">20</button><button type="button">21</button><button type="button">22</button><button type="button">23</button><button type="button">24</button><button type="button">25</button>
-            <button type="button">26</button><button type="button">27</button><button class="is-selected" type="button" aria-pressed="true">28</button><button type="button">29</button><button type="button">30</button><button type="button">31</button>
-          </div>
-        </div>
-        <label class="timezone-field">
-          <span>Time zone</span>
-          <select aria-label="Appointment time zone">
-            <option>Central Time (US &amp; Canada)</option>
-            <option>Eastern Time (US &amp; Canada)</option>
-            <option>Pacific Time (US &amp; Canada)</option>
-          </select>
-        </label>
-        <div class="booking-actions">
-          <label>
-            <span class="sr-only">Preferred time</span>
-            <select aria-label="Preferred appointment time">
-              <option>10:00 AM</option>
-              <option>11:00 AM</option>
-              <option>1:00 PM</option>
-              <option>2:00 PM</option>
+          <div class="field">
+            <label for="booking-timezone">Time zone</label>
+            <select id="booking-timezone" name="bookingTimeZone" required>
+              <option value="America/Chicago">Central Time (US &amp; Canada)</option>
+              <option value="America/New_York">Eastern Time (US &amp; Canada)</option>
+              <option value="America/Los_Angeles">Pacific Time (US &amp; Canada)</option>
             </select>
+          </div>
+          <div class="field">
+            <label for="booking-notes">What would you like to discuss? <span>(optional)</span></label>
+            <textarea id="booking-notes" name="bookingNotes" rows="3" maxlength="1000"></textarea>
+          </div>
+          <label class="consent-field">
+            <input name="bookingConsent" type="checkbox" required>
+            <span>I understand Google Calendar will open so I can review and save the invitation.</span>
           </label>
-          <button class="button button-primary" type="button" data-calendar-confirm>Confirm</button>
-        </div>
+          <button class="button button-primary" type="submit">Review calendar event</button>
+        </form>
         <p class="calendar-status" role="status" aria-live="polite" data-calendar-status></p>
       </article>
     </section>

@@ -6,7 +6,7 @@ One-page consulting website for Keyman Music Metadata Consultant. The site inclu
 - Music metadata and rights services
 - Secure catalog inquiry form
 - Rights Gap Analysis form for a Spotify or Apple Music song link
-- Google Calendar appointment schedule integration
+- Google Calendar event invitations for consultations
 - Credentials, selected credits, process, contact, privacy, and terms
 - FormSubmit delivery on GitHub Pages, with server-side Resend delivery available on the hosted Worker
 
@@ -21,7 +21,7 @@ npm run dev
 
 Open `http://127.0.0.1:4173`.
 
-The page and validation work without service credentials. Email delivery and live appointment availability require the environment values below.
+The page and calendar-event flow work without Google account credentials. Email delivery for the separate inquiry forms requires the environment values below.
 
 The public GitHub Pages form posts to FormSubmit for `admin@keymanpublishing.com`. The first submission triggers FormSubmit's one-time confirmation email; delivery begins after that confirmation link is accepted.
 
@@ -33,7 +33,6 @@ Create or configure these environment variables locally and in the hosting provi
 RESEND_API_KEY
 RESEND_FROM_EMAIL
 CONTACT_TO_EMAIL
-GOOGLE_APPOINTMENT_URL
 ALLOWED_ORIGINS
 ```
 
@@ -49,11 +48,7 @@ Keyman Website <forms@keymanpublishing.com>
 admin@keymanpublishing.com
 ```
 
-The Google URL must be the public appointment schedule URL, usually beginning with:
-
-```text
-https://calendar.google.com/calendar/appointments/schedules/
-```
+The booking form creates a prefilled 30-minute Google Calendar event. The customer reviews and saves it, with `producedbykeyman@gmail.com` and the customer's submitted address pre-added as guests. Google Calendar then sends the invitations and applies each guest's reminder settings. No access to Keyman's Google account is required by the website.
 
 Secrets are read only by the server endpoint. They are never included in browser JavaScript.
 
@@ -62,7 +57,7 @@ Secrets are read only by the server endpoint. They are never included in browser
 The repository is configured for Vercel:
 
 1. Import the repository into Vercel.
-2. Add the five environment variables.
+2. Add the four environment variables.
 3. Verify `keymanpublishing.com` in Resend and add the DNS records Resend provides.
 4. Attach `keymanpublishing.com` to the Vercel project.
 5. Deploy, submit a safe test through each form, and confirm receipt at `admin@keymanpublishing.com`.

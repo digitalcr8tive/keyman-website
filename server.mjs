@@ -4,7 +4,7 @@ import { extname, join, normalize, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { isAllowedOrigin, processSubmission } from "./lib/contact.js";
 
-const rootDirectory = fileURLToPath(new URL(".", import.meta.url));
+const rootDirectory = resolve(fileURLToPath(new URL(".", import.meta.url)));
 
 const loadEnvironmentFile = (filename) => {
   const filePath = join(rootDirectory, filename);
