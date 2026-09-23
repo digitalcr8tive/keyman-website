@@ -29,6 +29,7 @@ await Promise.all(
 );
 
 await cp(join(projectRoot, "assets"), join(clientRoot, "assets"), { recursive: true });
+await cp(join(projectRoot, "garage"), join(clientRoot, "garage"), { recursive: true });
 await cp(join(projectRoot, "worker", "index.js"), join(serverRoot, "index.js"));
 await cp(join(projectRoot, "lib", "contact.js"), join(serverRoot, "contact.js"));
 

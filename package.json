@@ -7,7 +7,7 @@
     "build": "node scripts/build.mjs",
     "dev": "node server.mjs",
     "test": "node --test",
-    "check": "node --check app.js && node --check lib/calendar.js && node --check server.mjs && node --check api/contact.js && node --check worker/index.js"
+    "check": "node --check app.js && node --check lib/calendar.js && node --check server.mjs && node --check api/contact.js && node --check worker/index.js && node scripts/check-garage.mjs"
   },
   "engines": {
     "node": ">=20"
