@@ -10,6 +10,26 @@ One-page consulting website for Keyman Music Metadata Consultant. The site inclu
 - Credentials, selected credits, process, contact, privacy, and terms
 - FormSubmit delivery on GitHub Pages, with server-side Resend delivery available on the hosted Worker
 
+## Garage Operations OS (`/garage/`)
+
+A second application inside the same template: a garage cleaning and organization business OS served at `garage/` (GitHub Pages: `/keyman-website/garage/`). It is plain HTML/CSS/ES modules like the rest of the site and reuses `styles.css` for the header, buttons, forms, and typography; `garage/garage.css` adds the app layout and planner canvas.
+
+Sections (hash-routed, `garage/#/<route>`):
+
+- `dashboard` — KPIs, quick actions, recent jobs
+- `sop` — ten-stage interactive garage cleaning SOP with safety guidance (state in localStorage)
+- `checklist` — the SOP run against a specific job record
+- `inventory` — supply inventory with in-stock / low-stock / reorder status and a "Build job loadout" generator (Basic Reset, Deep Clean, Full Garage Transformation)
+- `planner` — interactive 2D garage planner: object library, drag / rotate / resize / duplicate / delete, zones, grid snapping, dimensions, undo/redo, save, PNG/SVG/JSON export
+- `client` — client-facing "Garage Transformation Plan" (before / proposed / after + request-a-quote); opens shared layouts from `#/client?l=<token>`
+- `demo` — door-to-door sales demo flow
+- `jobs` — job records with photos, layout, SOP progress, loadout, status
+- `scanner` — future Room Scanner (coming soon) with the module contracts in `garage/js/scanner/types.js`
+
+Shareable links serialise the layout into the URL hash (deflate + base64url) so no backend is needed. Only public layout fields are encoded; job notes and metadata never leave the device. `garage/js/store.js` isolates persistence behind a `StorageAdapter` so localStorage can later be replaced by Supabase/Postgres. Data model: `garage/js/types.js` (JSDoc) and `garage/js/types.d.ts`.
+
+Tests: `tests/garage-share.test.js`, `tests/garage-model.test.js`. `npm run check` also syntax-checks every garage module.
+
 ## Run locally
 
 Requirements: Node.js 20 or newer.

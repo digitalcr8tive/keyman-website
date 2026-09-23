@@ -82,8 +82,9 @@ const resolveStaticPath = (pathname) => {
     if (existsSync(join(rootDirectory, htmlCandidate))) relativePath = htmlCandidate;
   }
 
-  const absolutePath = resolve(rootDirectory, relativePath);
+  let absolutePath = resolve(rootDirectory, relativePath);
   if (absolutePath !== rootDirectory && !absolutePath.startsWith(`${rootDirectory}${sep}`)) return null;
+  if (existsSync(absolutePath) && statSync(absolutePath).isDirectory()) absolutePath = join(absolutePath, "index.html");
   if (!existsSync(absolutePath) || !statSync(absolutePath).isFile()) return null;
   return absolutePath;
 };
